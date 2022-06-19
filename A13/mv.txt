@@ -1,0 +1,10 @@
+Result of m*v: 
+1
+5
+7
+
+Result of v*m: 
+1
+5
+7
+

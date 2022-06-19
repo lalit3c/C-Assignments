@@ -1,0 +1,24 @@
+/*
+   CH-230-B
+   a8_p5.c
+   Aarshika Singh
+   aa.singh@jacobs-university.de
+*/
+typedef struct Stack
+{
+    char s[30];
+    struct Stack *next;
+}Stack;
+/*Creating a stack*/
+typedef struct Word
+{
+    int item;
+    Stack *Word;
+}Word;
+/*Creating a stack for words*/
+
+void push(Word *Word, char string[30]);
+void pop (Word *Word, char string[30]);
+void new(Word *s, char string[100]);
+void isPalindrome(Word *Word, char *s);
+/*Declaring all the functions*/

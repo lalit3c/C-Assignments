@@ -1,0 +1,32 @@
+/*
+CH-230-A
+a10_p1.txt
+Lalit Chaudhary
+lchaudhary@jacobs-university.de
+*/
+
+On commenting out "using namespace std":
+
+Multiple errors of the form "use of undeclared identifier" and "unknown type name" 
+
+This happens because "string" class and other objects like "cout" "cin" and "endl" 
+are defined under the namespace "std". Upon commenting, the compiler cannot find the 
+related class or objects to carry the relevant operation.
+
+Solution : Explicity state the namespace when using the class and objects from 
+namespace. So, every occurance of string, cout, cin, and endl have to be replaced by
+std::string, std::cout, std::cin and std::endl respectively.
+
+
+On removing  "Critter::" prefix in Critter.cpp:
+
+Error of the form "use of undeclared identifier"
+because the compilers cannot find the declaration of relevant method
+as well as the same method could be used by various clasees.
+Also the setters and getters methods use the data memebers from
+the same class that they are defined. Upon removing the class prefix, 
+the compiler cannot find the declaration of the data memebers/variables.
+
+Solution: The possible soultion could be defining the methods within the class
+declaration in the header file.
+

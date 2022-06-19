@@ -1,0 +1,122 @@
+/*
+   CH-230-B
+   a8_p5.c
+   Aarshika Singh
+   aa.singh@jacobs-university.de
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include "stack.h"
+/*Including header file*/
+void push(Word *Word, char string[30])
+{
+    Stack *str;
+    str=malloc(sizeof(Stack));
+    str->next = NULL;
+    strcpy(str->s, string);
+
+if(Word->item==0)
+{
+     Word->Word=str;
+     Word->item=1;
+}
+else
+{
+    str->next=Word->Word;
+    Word->Word=str;
+    Word->item++;
+}
+}
+/*The above function-
+1) Takes in a stack of words and a string
+2) First creates a stack of string and points the 
+next pointer to NULL
+3) If the word is empty then the word is intialised to 
+the string
+4) Otherwise, the word is stored in the next
+element of the string
+5) The item of the word is incremented by 1*/
+
+void pop (Word *Word, char string[30])
+{
+    Stack *str;
+    str=Word->Word;
+
+    str=str->next;
+    strcpy(string,Word->Word->s);
+    free(Word->Word);
+    Word->Word=str;
+    Word->item--;
+ }
+ /*The above function
+ 1) Takes in a stack of word and a character
+ 2) It is used to pop out the elements by 
+ copying the character of the word in the stack
+ of words in the new character
+ 3) Frees the word*/
+
+void new(Word *s, char string[100])
+{
+    char str[30];
+    int i=0, j=0;
+    while(1)
+    {
+        if(string[i]!=' ' && string[i]!='\0')
+        {
+            str[j]=string[i];
+            j++;
+        }
+        else
+        {
+            str[j]='\0';
+            push(s, str);
+            j=0;
+        }
+        if(string[i]=='\0')
+        {
+            break;
+        }
+        i++;
+   }
+}
+/*The above function-
+1) Creates a new stack using a stack of words and 
+a string*/
+
+void isPalindrome(Word *Word, char *s)
+{
+char str[100];
+str[0]='\0';
+char c[30];
+int j;
+/*Declaring the variables*/
+pop(Word,c);
+strcpy(str, c);
+/*Calling the functions*/
+
+while(Word->Word!=NULL)
+{
+    j=strlen(str);
+    str[j]=' ';
+    str[j+1]='\0';
+    c[0]='\0';
+    pop(Word,c);
+    strcat(str, c);
+}
+/*While the stack of the words is not empty,
+it calls the function pop and strcat*/
+
+ if(strcmp(s, str)==0)
+ {
+     printf("The sentence is palindromic by words!\n");
+ }
+ /*If the string and the reversal of string, by popping the 
+ stack is same then the sentence is palindromic*/
+ else
+ {
+     printf("The sentence is not palindromic by words!\n");
+ }
+ /*Otherwise, the sentence is not palindromic*/
+ 
+}
